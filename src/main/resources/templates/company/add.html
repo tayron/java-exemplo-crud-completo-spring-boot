@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+        <head>
+        <div th:replace="fragments/header :: header"/>
+</head>
+<body>
+
+        <div th:replace="fragments/header :: header-nav"/>
+
+        <div class="container">
+
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2 th:text="*{id} ? #{label.edit} + ' ' +#{company}: #{label.add} + ' ' +#{company}">
+                                    Company
+                            </h2>
+                            
+                            <div class="alert alert-danger" th:text="${errorMessage}" 
+                                    th:if="${not #strings.isEmpty(errorMessage)}">                                
+                            </div>                            
+                        </div>
+                        
+                        <div class="panel-body">
+                                <form class="form-horizontal" th:object="${company}" th:action="@{/company/save}" method="POST" enctype="multipart/form-data">                                
+                                        <div class="form-group">
+                                                <fieldset>
+                                                        <div class="form-group row">                                                          
+                                                                <div class="col-md-4">
+                                                                        <label th:text="#{label.name}" for="name">Name</label>
+                                                                        <input type="hidden" class="form-control input-sm" name="id" id="id" th:field="*{id}"/>
+                                                                        <input type="text" id="name" class="form-control input-sm" 
+                                                                               th:field="*{name}" autofocus="autofocus" 
+                                                                               th:classappend="${#fields.hasErrors('name')}? 'is-invalid'"
+                                                                               th:placeholder="#{company.name.add.placeholder}" maxlength="50"/>
+                                                                        <div class="form-control-sm" 
+                                                                             th:if="${#fields.hasErrors('name')}" th:errors="*{name}" 
+                                                                             th:classappend="${#fields.hasErrors('name')}? 'invalid-feedback'">                                                                                  
+                                                                        </div>
+                                                                </div>
+
+                                                                <div class="col-md-4" th:classappend="${#fields.hasErrors('email')}? 'is-invalid'">
+                                                                        <label th:text="#{label.email}" for="email">Email</label> 
+                                                                        <input type="text" id="email" class="form-control input-sm" th:field="*{email}" maxlength="150" placeholder="Informe o email"/>
+                                                                        <div class="form-control-sm" 
+                                                                             th:if="${#fields.hasErrors('email')}" th:errors="*{email}" 
+                                                                             th:classappend="${#fields.hasErrors('email')}? 'invalid-feedback'">
+                                                                        </div>
+                                                                </div>
+                                                                
+                                                                <div class="col-md-4" th:classappend="${#fields.hasErrors('site')}? 'is-invalid'">
+                                                                        <label th:text="#{label.site}" for="site">Site</label> 
+                                                                        <input type="text" id="site" class="form-control input-sm" th:field="*{site}"/>
+                                                                        <div class="form-control-sm" 
+                                                                             th:if="${#fields.hasErrors('site')}" th:errors="*{site}" 
+                                                                             th:classappend="${#fields.hasErrors('site')}? 'invalid-feedback'">
+                                                                        </div>
+                                                                </div>                                                                
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                                <div class="col-md-2" th:classappend="${#fields.hasErrors('telephone')}? 'has-danger'">
+                                                                        <label th:text="#{label.telephone}" id="telephone">Telephone</label> 
+                                                                        <input type="text" id="telephone" class="form-control input-sm" th:field="*{telephone}"/>
+                                                                        <div class="form-control-sm" 
+                                                                             th:if="${#fields.hasErrors('telephone')}" th:errors="*{telephone}" 
+                                                                             th:classappend="${#fields.hasErrors('telephone')}? 'invalid-feedback'">
+                                                                        </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                        <label for="federalUnit" th:text="#{label.uf}">UF</label>
+                                                                        <select id="federalUnit" name="federalUnit" class="form-control">
+                                                                                <option th:each="federalUnit : ${listFederalUnit}" 
+                                                                                        th:value="${federalUnit}" 
+                                                                                        th:text="${federalUnit}">                                                                                                
+                                                                                </option>
+                                                                        </select>                                                                        
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                        <label th:text="#{label.city}" for="citySelected">City</label>
+                                                                        <select id="citySelected" 
+                                                                                name="citySelected" 
+                                                                                class="form-control" 
+                                                                                disabled>                                                                                    
+                                                                        </select>
+                                                                </div>    
+                                                                
+                                                                <div class="col-md-4">
+                                                                        <label for="logoSelected" th:text="#{label.logo}">Logo</label>
+                                                                        <input type="file" id="logoSelected" name="logoSelected" class="form-control input-sm" />        
+                                                                </div>
+                                                                
+                                                </fieldset>
+                                        </div>
+                                        <div class="form-group row">
+                                                <div class="col-md-12 text-center">
+                                                        <button type="submit" class="btn btn-sm btn-primary" th:text="#{button.save}"></button>
+                                                        <button type="reset" th:if="*{id} == null" class="btn btn-sm btn-warning" th:text="#{button.reset}"></button>
+                                                        <a class="btn btn-sm btn-secondary" th:href="@{/company}" role="button" th:text="#{button.cancel}"></a>
+                                                </div>
+                                        </div>
+                                </form>
+                        </div>
+                </div>
+        </div>
+        <!-- /.container -->
+        <div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+        <head>
+        <div th:replace="fragments/header :: header"/>
+</head>
+<body>
+
+        <div th:replace="fragments/header :: header-nav"/>
+
+        <div class="container">
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                                <strong th:text="#{registration.add.title}"></strong>
+                        </div>
+                        <div class="panel-body">
+                                <form class="form-horizontal" th:object="${registrationDTO}" th:action="@{/registration/save}" method="POST">
+                                        <div class="form-group row">                                                          
+                                                <div class="col-md-6">
+                                                        <label th:text="#{registration.add.name}" for="name"></label>
+                                                        <input type="text" id="name" class="form-control" maxlength="50"
+                                                               th:classappend="${#fields.hasErrors('name')}? 'is-invalid'"
+                                                               th:field="*{name}" autofocus="autofocus" 
+                                                               th:placeholder="#{registration.add.name.placeholder}" />
+                                                        <div class="form-control-sm"
+                                                             th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                                                             th:classappend="${#fields.hasErrors('name')}? 'invalid-feedback'"></div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                        <label th:text="#{registration.add.avatar}" for="avatar"></label>
+                                                        <input type="text" id="name" class="form-control" maxlength="50"
+                                                               th:classappend="${#fields.hasErrors('avatar')}? 'is-invalid'"
+                                                               th:field="*{avatar}" autofocus="autofocus" 
+                                                               th:placeholder="#{registration.add.avatar.placeholder}" />
+                                                        <div class="form-control-sm"
+                                                             th:if="${#fields.hasErrors('avatar')}" th:errors="*{avatar}"
+                                                             th:classappend="${#fields.hasErrors('avatar')}? 'invalid-feedback'"></div>
+                                                </div>
+                                        </div>
+                                        <div class="form-group row">                                                          
+                                                <div class="col-md-6" th:classappend="${#fields.hasErrors('site')}? 'is-invalid'">
+                                                        <label th:text="#{registration.add.site}" for="site"></label>
+                                                        <input type="text" id="site" class="form-control" maxlength="50"
+                                                               th:classappend="${#fields.hasErrors('site')}? 'is-invalid'"
+                                                               th:field="*{site}" autofocus="autofocus" 
+                                                               th:placeholder="#{registration.add.site.placeholder}" />
+                                                        <div class="form-control-sm"
+                                                             th:if="${#fields.hasErrors('site')}" th:errors="*{site}"
+                                                             th:classappend="${#fields.hasErrors('site')}? 'invalid-feedback'"></div>
+                                                </div>
+                                                <div class="col-md-6" th:classappend="${#fields.hasErrors('occupation')}? 'is-invalid'">
+                                                        <label th:text="#{registration.add.occupation}" for="occupation"></label>
+                                                        <input type="text" id="occupation" class="form-control" maxlength="50"
+                                                               th:classappend="${#fields.hasErrors('occupation')}? 'is-invalid'"
+                                                               th:field="*{occupation}" autofocus="autofocus" 
+                                                               th:placeholder="#{registration.add.occupation.placeholder}" />
+                                                        <div class="form-control-sm"
+                                                             th:if="${#fields.hasErrors('occupation')}" th:errors="*{occupation}"
+                                                             th:classappend="${#fields.hasErrors('occupation')}? 'invalid-feedback'"></div>
+                                                </div>
+                                        </div>
+                                        <div class="form-group row">                                                          
+                                                <div class="col-md-12" th:classappend="${#fields.hasErrors('email')}? 'is-invalid'">
+                                                        <label th:text="#{registration.add.email}" for="email"></label>
+                                                        <input type="text" id="occupation" class="form-control" maxlength="50"
+                                                               th:classappend="${#fields.hasErrors('email')}? 'is-invalid'"
+                                                               th:field="*{email}" autofocus="autofocus" 
+                                                               th:placeholder="#{registration.add.email.placeholder}" />
+                                                        <div class="form-control-sm"
+                                                             th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                                                             th:classappend="${#fields.hasErrors('email')}? 'invalid-feedback'"></div>
+                                                </div>
+                                        </div>
+                                        <div class="form-group row">                                                          
+                                                <div class="col-md-6" th:classappend="${#fields.hasErrors('password')}? 'is-invalid'">
+                                                        <label th:text="#{registration.add.password}" for="password"></label>
+                                                        <input type="password" id="occupation" class="form-control" maxlength="50"
+                                                               th:classappend="${#fields.hasErrors('password')}? 'is-invalid'"
+                                                               th:field="*{password}" autofocus="autofocus" 
+                                                               th:placeholder="#{registration.add.password.placeholder}" />
+                                                        <div class="form-control-sm"
+                                                             th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                                                             th:classappend="${#fields.hasErrors('password')}? 'invalid-feedback'"></div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                        <label th:text="#{registration.add.passwordConfirmation}" for="passwordConfirmation"></label>
+                                                        <input type="password" id="occupation" class="form-control" maxlength="50"
+                                                               th:classappend="${#fields.hasErrors('passwordConfirmation')}? 'is-invalid'"
+                                                               th:field="*{passwordConfirmation}" autofocus="autofocus" 
+                                                               th:placeholder="#{registration.add.passwordConfirmation.placeholder}" />
+                                                        <div class="form-control-sm"
+                                                             th:if="${#fields.hasErrors('passwordConfirmation')}" th:errors="*{passwordConfirmation}"
+                                                             th:classappend="${#fields.hasErrors('passwordConfirmation')}? 'invalid-feedback'"></div>
+                                                </div>
+                                        </div>
+                                        <div class="form-group row">
+                                                <div class="col-md-12 text-center">
+                                                        <button type="submit" class="btn btn-sm btn-success" th:text="#{button.save}"></button>
+                                                        <a th:href="@{/}" class="btn btn-sm btn-danger" th:text="#{button.cancel}"></a>
+                                                </div>
+                                        </div>
+                                </form>
+                        </div>
+                </div>
+        </div>
+        <!-- /.container -->
+        <div th:replace="fragments/footer :: footer"/>
+</body>
+</html>

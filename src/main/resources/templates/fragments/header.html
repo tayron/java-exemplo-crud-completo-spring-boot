@@ -1,0 +1,54 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+    <div th:fragment="header">
+        <!-- this is header -->
+        <title th:text="#{title}"></title>
+        <link rel="stylesheet" th:href="@{/bootstrap/4.0.0-beta2/css/bootstrap.css}" />
+        <link rel="stylesheet" th:href="@{/css/main.css}" />
+    </div>
+</head>
+<body>
+    <div th:fragment="header-nav">
+        <!-- this is header -->
+        <nav class="navbar navbar-inverse navbar-expand-sm navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="/">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/registration">Register</a>
+                    </li>                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/company" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{company}">
+                            Company
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/company/add" th:text="#{link.add}">Add</a>
+                            <a class="dropdown-item" href="/company" th:text="#{link.list}">List</a>
+                        </div>
+                    </li>                  
+                </ul>
+                <ul class="nav navbar-nav float-xs-right">
+                    <li class="nav-item dropdown">
+                        <a  class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <img id="imgNavSel" src="" alt="..." class="img-thumbnail icon-small">
+                            <span id="lanNavSel">BRA</span>
+                            <span class="caret"></span></a>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a id="lang_pt_BR" href="?lang=pt_BR"><img src="https://cdn3.iconfinder.com/data/icons/finalflags/32/Brazil-Flag.png"/><span th:text="#{lang.pt_BR}"></span></a>
+                            <li><a id="lang_en" href="?lang=en"><img src="https://cdn3.iconfinder.com/data/icons/finalflags/32/Jarvis-Island-Flag.png"/><span th:text="#{lang.en}"></span></a>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</body>
+</html>

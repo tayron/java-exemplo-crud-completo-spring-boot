@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+        <head>
+        </head>
+        <body>
+                <div th:fragment="bootstrap_modal_confirm(id, name, url)">
+                        <!-- The Modal -->
+                        <div class="modal fade" th:id="${'myModal' + id}">
+                                <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                        <h4 class="modal-title" th:text="#{label.confirmation}">Confirmation</h4>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+
+                                                <!-- Modal body -->
+                                                <div class="modal-body">
+                                                        <p th:text="#{message.delete.confirm} + ${id} + ' - ' + ${name}"></p>
+                                                </div>
+
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer">
+                                                        <a class="btn btn-sm btn-primary" 
+                                                           th:href="${url}" 
+                                                           th:text="#{button.delete}">
+                                                                Delete
+                                                        </a>
+                                                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal" th:text="#{button.cancel}">
+                                                                Cancel
+                                                        </button>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </body>
+</html>

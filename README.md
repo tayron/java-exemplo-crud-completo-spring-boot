@@ -1,2 +1,3 @@
-# crud-completo-spring-mvc
-CRUD de company e cadastro de candidato usando spring mvc
+# Vaga Colaborativa#
+
+Site de vagas de emprego para profissionais da área de TI.

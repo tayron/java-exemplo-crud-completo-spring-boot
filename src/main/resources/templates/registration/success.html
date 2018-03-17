@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header"/>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header-nav"/>
+
+	<div class="container">
+                <h1 th:text="#{registration.success(${registrationUser.name})}"></h1>
+		<h3 th:text="#{registration.success.email(${registrationUser.email})}"></h3>
+	</div>
+<!-- /.container -->
+<div th:replace="fragments/footer :: footer"/>
+</body>
+</html>

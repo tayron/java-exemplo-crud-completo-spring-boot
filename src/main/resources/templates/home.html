@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${lang}">
+<head>
+    <div th:replace="fragments/header :: header"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header-nav"/>
+<main role="main" class="container">
+	<h1 th:text="#{greeting}"></h1>
+    <div class="starter-template">
+        <h1>Spring Boot Web Thymeleaf + Spring Security</h1>
+        <h2>1. Visit <a th:href="@{/admin}">Admin page (Spring Security protected, Need Admin Role)</a></h2>
+        <h2>2. Visit <a th:href="@{/user}">User page (Spring Security protected, Need User Role)</a></h2>
+        <h2>3. Visit <a th:href="@{/about}">Normal page</a></h2>
+    </div>
+</main>
+<!-- /.container -->
+<div th:replace="fragments/footer :: footer"/>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header"/>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header-nav"/>
+
+<div class="container">
+        
+    <div class="starter-template">
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 th:text="#{company}">Company</h2>
+                
+                <div class="alert alert-success" th:text="${successMessage}" 
+                        th:if="${not #strings.isEmpty(successMessage)}">                                
+                </div>
+                
+                <div class="alert alert-danger" th:text="${errorMessage}" 
+                        th:if="${not #strings.isEmpty(errorMessage)}">                                
+                </div>                
+            </div>
+                
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th th:text="#{label.name}"></th>
+                                <th th:text="#{label.email}"></th>
+                                <th th:text="#{label.site}"></th>
+                                <th th:text="#{label.uf}"></th>
+                                <th th:text="#{label.city}"></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="company : ${companies}">
+                                <td th:text="${company.id}"></td>
+                                <td th:text="${company.name}"></td>
+                                <td th:text="${company.email}"></td>
+                                <td th:text="${company.site}"></td>
+                                <td th:text="${#strings.toUpperCase(company.city.federalUnit)}"></td>
+                                <td th:text="${#strings.capitalize(#strings.toLowerCase(company.city.name))}"></td>
+                                <td>
+                                    <div class="btn-group pull-right">
+                                        <a class="btn btn-sm btn-primary" 
+                                           th:href="@{/company/edit/{id}(id=${company.id})}" 
+                                           th:text="#{button.edit}">
+                                                Edit
+                                        </a>
+
+                                        <!-- Button to Open the Modal -->  
+                                        <a href="#" 
+                                           class="btn btn-danger btn-sm" 
+                                           data-toggle="modal" 
+                                           th:data-target="${'#myModal' + company.id}" 
+                                           th:text="#{button.delete}"
+                                        >
+                                                Delete 
+                                        </a>
+
+                                        <!-- Modal confirm -->
+                                        <div th:replace="fragments/bootstrap_modal_confirm :: bootstrap_modal_confirm(
+                                             id=${company.id}, 
+                                             name=${company.name}, 
+                                             url=${'/company/delete/' + company.id}
+                                        )"/>
+                                   </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
+<!-- /.container -->
+<div th:replace="fragments/footer :: footer"/>
+</body>
+</html>
