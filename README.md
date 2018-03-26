@@ -1,6 +1,6 @@
 # CRUD completo de "empresa" com cadastro de usuário usando Spring Boot
 
-O cadastro de empresa inclui cadastro de logomarca armazenando os bytes no banco de dados
+O cadastro de empresa inclui cadastro de logomarca armazenando os bytes no banco de dados.
 Este exemplo utiliza como banco de dados MYSQL.
 
 Os dados de conexão com banco de dados MYSQL devem ser configuradas em: https://github.com/tayron/crud-completo-spring-boot/blob/master/src/main/resources/application.properties.
