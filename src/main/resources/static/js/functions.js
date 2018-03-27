@@ -21,7 +21,7 @@ function loadListCities() {
 };
 
 function setListCities(idElement, listCities){
-    var htmlListCities = "";
+    var htmlListCities = "<option value = '' >Selecione</option>";
 
     listCities.forEach(function(city) {         
         htmlListCities += "<option value = '" + city + "' >" + city +  "</option>";            
